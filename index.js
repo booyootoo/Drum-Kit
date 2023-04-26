@@ -14,6 +14,7 @@ for (var i = 0; i < numberOfButtons; i++) {
         //getting the button text and using that to call the function to play a sound.
         var buttonInnerHTML = this.innerHTML;
         playSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
      });
 }
 
@@ -23,6 +24,7 @@ document.addEventListener("keydown", function (event) {
     //only listen to the keys that are mapped to a button.
     if (buttonsToPress.includes(keyPressed)) {
         playSound(keyPressed);
+        buttonAnimation(event.key);
     } else {
         console.log("this key is not mapped.");
     }
@@ -70,4 +72,16 @@ function playSound(playSound) {
             console.log(playSound);
             break;
     }
+}
+
+function buttonAnimation(currentKey) {
+
+    // if (deactivateButton.length() > 0) {
+    //     deactivateButton.classList.remove("pressed");
+    // }
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function () {
+        activeButton.classList.remove("pressed");
+    }, 200);
 }
